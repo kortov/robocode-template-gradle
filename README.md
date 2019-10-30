@@ -11,7 +11,7 @@ to got it working:
 (I'll improve my script later to get rid of this step)
 * replace `robot.classname` and `robot.version` in your resources properties file to your `robotClass` and `robotVersion` values from gradle.properties
 (I'll improve it later) 
-* (optional) replace `robotClassEnemy` in gradle.properties to you bot enemy classes (you can specify them with comma)
+* (optional) replace `robotClassEnemy` in gradle.properties to your downloaded or built bot enemy classes (you can specify them with comma). Bots classes or jars should exist in robocodeDir/robots
 * cd in console to a project folder and run `gradlew superStart` in console (`./gradlew superStart` on linux)
 
 That's it!

@@ -1,4 +1,4 @@
-### Template for robocode gradle java project
+# Template for robocode gradle java project
 
 ## Instructions
 
@@ -15,14 +15,14 @@ That's it!
 
 ## Gradle tasks usage
 
-# cleanup
+### cleanup
 invokes clean and removes your files of bot's jar, bots game scenario and imported bots table from your robocode installation directory
 
-# install
+### install
 builds jar, moves jar and bots game scenario to robocode dir
 
-# start
+### start
 starts robocode app with your bot game scenario
 
-# superstart
+### superstart
 invokes cleanup, install, start tasks sequentially

@@ -3,13 +3,15 @@
 ## Instructions
 
 to got it working:
-* change robotClassEnemy to your robot's className in gradle.properties
-* change robocodeDir to your robocode directory in gradle.properties
+* change robotClass to your robot's className in gradle.properties
+* change robocodeDir to your robocode installation directory in gradle.properties
 * create properties file in src/main/resources just like mine com/kortov/MyRobot.properties
-(package structure is neccessary) and remove mine properties
+(package structure is neccessary) and remove my properties
 (I'll improve my script later to get rid of this step)
-* replace robot.classname in your property file to your className
+* replace robot.classname and robot.version in your resources properties file to your robotClass and robotVersion values from gradle.properties
+(I'll improve it later) 
 * (optional) replace robotClassEnemy in gradle.properties to you bot enemy classes (you can specify them with comma)
+
 
 That's it!
 

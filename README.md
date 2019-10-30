@@ -3,15 +3,16 @@
 ## Instructions
 
 to got it working:
-* change robotClass to your robot's className in gradle.properties
-* change robocodeDir to your robocode installation directory in gradle.properties
-* create properties file in src/main/resources just like mine com/kortov/MyRobot.properties
+* install [robocode](https://robocode.sourceforge.io/) on your computer 
+* change `robotClass` to your robot's `className` in `gradle.properties`
+* change `robocodeDir` to your robocode installation directory in `gradle.properties`
+* create properties file in `src/main/resources` just like mine `com/kortov/MyRobot.properties`
 (package structure is neccessary) and remove my properties
 (I'll improve my script later to get rid of this step)
-* replace robot.classname and robot.version in your resources properties file to your robotClass and robotVersion values from gradle.properties
+* replace `robot.classname` and `robot.version` in your resources properties file to your `robotClass` and `robotVersion` values from gradle.properties
 (I'll improve it later) 
-* (optional) replace robotClassEnemy in gradle.properties to you bot enemy classes (you can specify them with comma)
-
+* (optional) replace `robotClassEnemy` in gradle.properties to you bot enemy classes (you can specify them with comma)
+* cd in console to a project folder and run `gradlew superStart` in console (`./gradlew superStart` on linux)
 
 That's it!
 

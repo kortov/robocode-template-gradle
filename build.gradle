@@ -1,0 +1,116 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
+plugins {
+  id "java"
+}
+
+ext {
+  robotJarName = "${robotClass}_${robotVersion}"
+  buildBattleDir = "${rootDir}/battles/"
+  robocodeBattlesDir = "${robocodeDir}/battles/"
+  robocodeBattleFile =  robocodeBattlesDir + battleFile
+  buildBattleFile =  buildBattleDir + battleFile
+}
+
+sourceSets {
+  main.java.srcDirs += 'src/main/java'
+}
+
+dependencies {
+  implementation fileTree(include: ['*.jar'], dir: "${robocodeDir}/libs")
+}
+
+jar {
+  archivesBaseName = robotJarName
+  duplicatesStrategy = 'EXCLUDE'
+
+//  doFirst {
+//    ant.replace(file: robocodeBattleFile, token: token, value: replace)
+//  }
+  
+  manifest {
+    attributes "robots": "${robotClass}"
+  }
+
+  from {
+    sourceSets.main.allSource
+  }
+}
+
+task cleanup {
+  group = 'robocode'
+  doLast {
+    def robotsPath = "${robocodeDir}/robots/"
+    delete fileTree(robotsPath).matching {
+      include "**/${robotJarName}.jar"
+      include "**/robot.database"
+    }
+    delete fileTree(robocodeBattlesDir).matching {
+      include "**/${battleFile}"
+    }
+  }
+}
+
+task install {
+  group = 'robocode'
+
+  def fromPath = "${rootDir}/build/libs/${robotJarName}.jar"
+  def intoPath = "${robocodeDir}/robots/"
+
+  def battleRobots = "${robotClassEnemy}, ${robotClass} ${robotVersion}"
+  def robotsProp = 'robocode.battle.selectedRobots'
+  def token = '@replacedString@'
+  def replace = robotsProp + "=" + battleRobots
+
+  doFirst {
+    copy {
+      from buildBattleFile
+      into robocodeBattlesDir
+//    filter { line -> line.replaceAll(replacedString, replace) }
+//      filter(ReplaceTokens, tokens: [replacedString : battleRobots])
+      eachFile { details ->
+        println "Copied ${details}"
+      }
+    }
+
+    copy {
+      from fromPath
+      into intoPath
+      eachFile { details ->
+        println "Copied ${details}"
+      }
+    }
+  }
+  
+  doLast {
+    ant.replace(file: robocodeBattleFile, token: token, value: replace)
+  }
+}
+
+task start {
+  group = 'robocode'
+
+  doLast {
+    exec {
+      commandLine 'java',
+              "-Xmx512M",
+              "-Ddebug=true",
+              "-DWORKINGDIRECTORY=${robocodeDir}",
+              "-cp", "${robocodeDir}/libs/robocode.jar", "robocode.Robocode",
+              '-battle', robocodeBattleFile
+    }
+  }
+}
+
+tasks.register('superStart') {
+  group = 'robocode'
+}
+
+tasks.install.dependsOn jar
+tasks.start.dependsOn install
+tasks.cleanup.dependsOn clean
+tasks.superStart.dependsOn(cleanup, install, start)

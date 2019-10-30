@@ -28,10 +28,6 @@ jar {
   archivesBaseName = robotJarName
   duplicatesStrategy = 'EXCLUDE'
 
-//  doFirst {
-//    ant.replace(file: robocodeBattleFile, token: token, value: replace)
-//  }
-  
   manifest {
     attributes "robots": "${robotClass}"
   }
@@ -70,8 +66,6 @@ task install {
     copy {
       from buildBattleFile
       into robocodeBattlesDir
-//    filter { line -> line.replaceAll(replacedString, replace) }
-//      filter(ReplaceTokens, tokens: [replacedString : battleRobots])
       eachFile { details ->
         println "Copied ${details}"
       }

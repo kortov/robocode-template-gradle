@@ -15,7 +15,7 @@ to got it working:
 * (optional) replace `robotClassEnemy` in gradle.properties to your downloaded or built bot enemy classes (you can specify them with comma). Bots classes or jars should exist in robocodeDir/robots
 * cd in console to a project folder and run `gradlew superStart` in console (`./gradlew superStart` on linux)
 
-That's it!
+That's it! Your bot will be in `projectDirectory/build/libs` and in `robocodeDir/robots`
 
 ## Gradle tasks usage
 

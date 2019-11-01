@@ -100,11 +100,11 @@ task start {
   }
 }
 
-tasks.register('superStart') {
+tasks.register('superstart') {
   group = 'robocode'
 }
 
 tasks.install.dependsOn jar
 tasks.start.dependsOn install
 tasks.cleanup.dependsOn clean
-tasks.superStart.dependsOn(cleanup, install, start)
+tasks.superstart.dependsOn(cleanup, install, start)

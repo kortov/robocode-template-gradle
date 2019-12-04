@@ -7,7 +7,7 @@ to got it working:
 * install [robocode](https://robocode.sourceforge.io/) on your computer 
 * change `robotClass` to your robot's `className` in `gradle.properties`
 * change `robocodeDir` to your robocode installation directory in `gradle.properties`
-* create properties file in `src/main/resources` just like mine `com/kortov/MyRobot.properties`
+* create properties file with your class name in `src/main/resources` just like mine `com/kortov/MyRobot.properties`
 (package structure is neccessary) and remove my properties
 (I'll improve my script later to get rid of this step)
 * replace `robot.classname` and `robot.version` in your resources properties file to your `robotClass` and `robotVersion` values from gradle.properties
@@ -16,6 +16,9 @@ to got it working:
 * cd in console to a project folder and run `gradlew superstart` in console (`./gradlew superstart` on linux)
 
 That's it! Your bot will be in `projectDirectory/build/libs` and in `robocodeDir/robots`
+
+### Change version of the bot
+Manually change versions in two properties from `src/main/resources` and `gradle.properties` otherwise robocode will play the old version or won't find the new one
 
 ## Gradle tasks usage
 

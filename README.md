@@ -2,7 +2,8 @@
 
 ## Instructions
 
-to got it working:
+### To got it working:
+
 * install jdk 8, 11 or later [Oracle JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html), [Liberica JDK](https://bell-sw.com/)
 * install [robocode](https://robocode.sourceforge.io/) on your computer 
 * change `robotClass` to your robot's `className` in `gradle.properties`
